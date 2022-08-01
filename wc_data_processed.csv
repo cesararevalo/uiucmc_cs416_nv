@@ -1,0 +1,84 @@
+team_code,team_name,tournaments,group stage,round of 16,quarter-finals,semi-finals,third-place match,final,winner,participations
+DZA,Algeria,"{'WC-1982': {'matches': 3}, 'WC-1986': {'matches': 3}, 'WC-2010': {'matches': 3}, 'WC-2014': {'matches': 4}}",12,1,0,0,0,0,0,4
+AGO,Angola,{'WC-2006': {'matches': 3}},3,0,0,0,0,0,0,1
+ARG,Argentina,"{'WC-1930': {'matches': 5}, 'WC-1934': {'matches': 1}, 'WC-1958': {'matches': 3}, 'WC-1962': {'matches': 3}, 'WC-1966': {'matches': 4}, 'WC-1974': {'matches': 6}, 'WC-1978': {'matches': 7}, 'WC-1982': {'matches': 5}, 'WC-1986': {'matches': 7}, 'WC-1990': {'matches': 7}, 'WC-1994': {'matches': 4}, 'WC-1998': {'matches': 5}, 'WC-2002': {'matches': 3}, 'WC-2006': {'matches': 5}, 'WC-2010': {'matches': 5}, 'WC-2014': {'matches': 7}, 'WC-2018': {'matches': 4}}",56,9,7,4,0,5,2,17
+AUS,Australia,"{'WC-1974': {'matches': 3}, 'WC-2006': {'matches': 4}, 'WC-2010': {'matches': 3}, 'WC-2014': {'matches': 3}, 'WC-2018': {'matches': 3}}",15,1,0,0,0,0,0,5
+AUT,Austria,"{'WC-1934': {'matches': 4}, 'WC-1954': {'matches': 5}, 'WC-1958': {'matches': 3}, 'WC-1978': {'matches': 6}, 'WC-1982': {'matches': 5}, 'WC-1990': {'matches': 3}, 'WC-1998': {'matches': 3}}",22,1,2,2,2,0,0,7
+BEL,Belgium,"{'WC-1930': {'matches': 2}, 'WC-1934': {'matches': 1}, 'WC-1938': {'matches': 1}, 'WC-1954': {'matches': 2}, 'WC-1970': {'matches': 3}, 'WC-1982': {'matches': 5}, 'WC-1986': {'matches': 7}, 'WC-1990': {'matches': 4}, 'WC-1994': {'matches': 4}, 'WC-1998': {'matches': 3}, 'WC-2002': {'matches': 4}, 'WC-2014': {'matches': 5}, 'WC-2018': {'matches': 7}}",33,8,3,2,2,0,0,13
+BOL,Bolivia,"{'WC-1930': {'matches': 2}, 'WC-1950': {'matches': 1}, 'WC-1994': {'matches': 3}}",6,0,0,0,0,0,0,3
+BIH,Bosnia and Herzegovina,{'WC-2014': {'matches': 3}},3,0,0,0,0,0,0,1
+BRA,Brazil,"{'WC-1930': {'matches': 2}, 'WC-1934': {'matches': 1}, 'WC-1938': {'matches': 5}, 'WC-1950': {'matches': 6}, 'WC-1954': {'matches': 3}, 'WC-1958': {'matches': 6}, 'WC-1962': {'matches': 6}, 'WC-1966': {'matches': 3}, 'WC-1970': {'matches': 6}, 'WC-1974': {'matches': 7}, 'WC-1978': {'matches': 7}, 'WC-1982': {'matches': 5}, 'WC-1986': {'matches': 5}, 'WC-1990': {'matches': 4}, 'WC-1994': {'matches': 7}, 'WC-1998': {'matches': 7}, 'WC-2002': {'matches': 7}, 'WC-2006': {'matches': 5}, 'WC-2010': {'matches': 5}, 'WC-2014': {'matches': 7}, 'WC-2018': {'matches': 5}}",63,11,14,8,4,9,7,21
+BGR,Bulgaria,"{'WC-1962': {'matches': 3}, 'WC-1966': {'matches': 3}, 'WC-1970': {'matches': 3}, 'WC-1974': {'matches': 3}, 'WC-1986': {'matches': 4}, 'WC-1994': {'matches': 7}, 'WC-1998': {'matches': 3}}",21,2,1,1,1,0,0,7
+CMR,Cameroon,"{'WC-1982': {'matches': 3}, 'WC-1990': {'matches': 5}, 'WC-1994': {'matches': 3}, 'WC-1998': {'matches': 3}, 'WC-2002': {'matches': 3}, 'WC-2010': {'matches': 3}, 'WC-2014': {'matches': 3}}",21,1,1,0,0,0,0,7
+CAN,Canada,{'WC-1986': {'matches': 3}},3,0,0,0,0,0,0,1
+CHL,Chile,"{'WC-1930': {'matches': 3}, 'WC-1950': {'matches': 3}, 'WC-1962': {'matches': 6}, 'WC-1966': {'matches': 3}, 'WC-1974': {'matches': 3}, 'WC-1982': {'matches': 3}, 'WC-1998': {'matches': 4}, 'WC-2010': {'matches': 4}, 'WC-2014': {'matches': 4}}",27,3,1,1,1,0,0,9
+CHN,China,{'WC-2002': {'matches': 3}},3,0,0,0,0,0,0,1
+COL,Colombia,"{'WC-1962': {'matches': 3}, 'WC-1990': {'matches': 4}, 'WC-1994': {'matches': 3}, 'WC-1998': {'matches': 3}, 'WC-2014': {'matches': 5}, 'WC-2018': {'matches': 4}}",18,3,1,0,0,0,0,6
+CRI,Costa Rica,"{'WC-1990': {'matches': 4}, 'WC-2002': {'matches': 3}, 'WC-2006': {'matches': 3}, 'WC-2014': {'matches': 5}, 'WC-2018': {'matches': 3}}",15,2,1,0,0,0,0,5
+HRV,Croatia,"{'WC-1998': {'matches': 7}, 'WC-2002': {'matches': 3}, 'WC-2006': {'matches': 3}, 'WC-2014': {'matches': 3}, 'WC-2018': {'matches': 7}}",15,2,2,2,1,1,0,5
+CUB,Cuba,{'WC-1938': {'matches': 3}},0,2,1,0,0,0,0,1
+CZE,Czech Republic,{'WC-2006': {'matches': 3}},3,0,0,0,0,0,0,1
+CSK,Czechoslovakia,"{'WC-1934': {'matches': 4}, 'WC-1938': {'matches': 3}, 'WC-1954': {'matches': 2}, 'WC-1958': {'matches': 4}, 'WC-1962': {'matches': 6}, 'WC-1970': {'matches': 3}, 'WC-1982': {'matches': 3}, 'WC-1990': {'matches': 5}}",18,3,5,2,0,2,0,8
+DNK,Denmark,"{'WC-1986': {'matches': 4}, 'WC-1998': {'matches': 5}, 'WC-2002': {'matches': 4}, 'WC-2010': {'matches': 3}, 'WC-2018': {'matches': 4}}",15,4,1,0,0,0,0,5
+IDN,Dutch East Indies,{'WC-1938': {'matches': 1}},0,1,0,0,0,0,0,1
+DDR,East Germany,{'WC-1974': {'matches': 6}},6,0,0,0,0,0,0,1
+ECU,Ecuador,"{'WC-2002': {'matches': 3}, 'WC-2006': {'matches': 4}, 'WC-2014': {'matches': 3}}",9,1,0,0,0,0,0,3
+EGY,Egypt,"{'WC-1934': {'matches': 1}, 'WC-1990': {'matches': 3}, 'WC-2018': {'matches': 3}}",6,1,0,0,0,0,0,3
+SLV,El Salvador,"{'WC-1970': {'matches': 3}, 'WC-1982': {'matches': 3}}",6,0,0,0,0,0,0,2
+ENG,England,"{'WC-1950': {'matches': 3}, 'WC-1954': {'matches': 3}, 'WC-1958': {'matches': 4}, 'WC-1962': {'matches': 4}, 'WC-1966': {'matches': 6}, 'WC-1970': {'matches': 4}, 'WC-1982': {'matches': 5}, 'WC-1986': {'matches': 5}, 'WC-1990': {'matches': 7}, 'WC-1998': {'matches': 4}, 'WC-2002': {'matches': 5}, 'WC-2006': {'matches': 5}, 'WC-2010': {'matches': 4}, 'WC-2014': {'matches': 3}, 'WC-2018': {'matches': 7}}",47,7,9,3,2,1,1,15
+FRA,France,"{'WC-1930': {'matches': 3}, 'WC-1934': {'matches': 1}, 'WC-1938': {'matches': 2}, 'WC-1954': {'matches': 2}, 'WC-1958': {'matches': 6}, 'WC-1966': {'matches': 3}, 'WC-1978': {'matches': 3}, 'WC-1982': {'matches': 7}, 'WC-1986': {'matches': 7}, 'WC-1998': {'matches': 7}, 'WC-2002': {'matches': 3}, 'WC-2006': {'matches': 7}, 'WC-2010': {'matches': 3}, 'WC-2014': {'matches': 5}, 'WC-2018': {'matches': 7}}",40,7,7,6,3,3,2,15
+DEU,West Germany,"{'WC-1934': {'matches': 4}, 'WC-1938': {'matches': 2}, 'WC-1954': {'matches': 6}, 'WC-1958': {'matches': 6}, 'WC-1962': {'matches': 4}, 'WC-1966': {'matches': 6}, 'WC-1970': {'matches': 6}, 'WC-1974': {'matches': 7}, 'WC-1978': {'matches': 6}, 'WC-1982': {'matches': 7}, 'WC-1986': {'matches': 7}, 'WC-1990': {'matches': 7}, 'WC-1994': {'matches': 5}, 'WC-1998': {'matches': 5}, 'WC-2002': {'matches': 7}, 'WC-2006': {'matches': 7}, 'WC-2010': {'matches': 7}, 'WC-2014': {'matches': 7}, 'WC-2018': {'matches': 3}}",59,11,14,12,5,8,4,19
+GHA,Ghana,"{'WC-2006': {'matches': 4}, 'WC-2010': {'matches': 5}, 'WC-2014': {'matches': 3}}",9,2,1,0,0,0,0,3
+GRC,Greece,"{'WC-1994': {'matches': 3}, 'WC-2010': {'matches': 3}, 'WC-2014': {'matches': 4}}",9,1,0,0,0,0,0,3
+HTI,Haiti,{'WC-1974': {'matches': 3}},3,0,0,0,0,0,0,1
+HND,Honduras,"{'WC-1982': {'matches': 3}, 'WC-2010': {'matches': 3}, 'WC-2014': {'matches': 3}}",9,0,0,0,0,0,0,3
+HUN,Hungary,"{'WC-1934': {'matches': 2}, 'WC-1938': {'matches': 4}, 'WC-1954': {'matches': 5}, 'WC-1958': {'matches': 4}, 'WC-1962': {'matches': 4}, 'WC-1966': {'matches': 4}, 'WC-1978': {'matches': 3}, 'WC-1982': {'matches': 3}, 'WC-1986': {'matches': 3}}",21,2,5,2,0,2,0,9
+ISL,Iceland,{'WC-2018': {'matches': 3}},3,0,0,0,0,0,0,1
+IRN,Iran,"{'WC-1978': {'matches': 3}, 'WC-1998': {'matches': 3}, 'WC-2006': {'matches': 3}, 'WC-2014': {'matches': 3}, 'WC-2018': {'matches': 3}}",15,0,0,0,0,0,0,5
+IRQ,Iraq,{'WC-1986': {'matches': 3}},3,0,0,0,0,0,0,1
+ISR,Israel,{'WC-1970': {'matches': 3}},3,0,0,0,0,0,0,1
+ITA,Italy,"{'WC-1934': {'matches': 5}, 'WC-1938': {'matches': 4}, 'WC-1950': {'matches': 2}, 'WC-1954': {'matches': 3}, 'WC-1962': {'matches': 3}, 'WC-1966': {'matches': 3}, 'WC-1970': {'matches': 6}, 'WC-1974': {'matches': 3}, 'WC-1978': {'matches': 7}, 'WC-1982': {'matches': 7}, 'WC-1986': {'matches': 4}, 'WC-1990': {'matches': 7}, 'WC-1994': {'matches': 7}, 'WC-1998': {'matches': 5}, 'WC-2002': {'matches': 4}, 'WC-2006': {'matches': 7}, 'WC-2010': {'matches': 3}, 'WC-2014': {'matches': 3}}",52,8,8,7,2,6,4,18
+CIV,Ivory Coast,"{'WC-2006': {'matches': 3}, 'WC-2010': {'matches': 3}, 'WC-2014': {'matches': 3}}",9,0,0,0,0,0,0,3
+JAM,Jamaica,{'WC-1998': {'matches': 3}},3,0,0,0,0,0,0,1
+JPN,Japan,"{'WC-1998': {'matches': 3}, 'WC-2002': {'matches': 4}, 'WC-2006': {'matches': 3}, 'WC-2010': {'matches': 4}, 'WC-2014': {'matches': 3}, 'WC-2018': {'matches': 4}}",18,3,0,0,0,0,0,6
+KWT,Kuwait,{'WC-1982': {'matches': 3}},3,0,0,0,0,0,0,1
+MEX,Mexico,"{'WC-1930': {'matches': 3}, 'WC-1950': {'matches': 3}, 'WC-1954': {'matches': 2}, 'WC-1958': {'matches': 3}, 'WC-1962': {'matches': 3}, 'WC-1966': {'matches': 3}, 'WC-1970': {'matches': 4}, 'WC-1978': {'matches': 3}, 'WC-1986': {'matches': 5}, 'WC-1994': {'matches': 4}, 'WC-1998': {'matches': 4}, 'WC-2002': {'matches': 4}, 'WC-2006': {'matches': 4}, 'WC-2010': {'matches': 4}, 'WC-2014': {'matches': 4}, 'WC-2018': {'matches': 4}}",47,8,2,0,0,0,0,16
+MAR,Morocco,"{'WC-1970': {'matches': 3}, 'WC-1986': {'matches': 4}, 'WC-1994': {'matches': 3}, 'WC-1998': {'matches': 3}, 'WC-2018': {'matches': 3}}",15,1,0,0,0,0,0,5
+NLD,Netherlands,"{'WC-1934': {'matches': 1}, 'WC-1938': {'matches': 1}, 'WC-1974': {'matches': 7}, 'WC-1978': {'matches': 7}, 'WC-1990': {'matches': 4}, 'WC-1994': {'matches': 5}, 'WC-1998': {'matches': 7}, 'WC-2006': {'matches': 4}, 'WC-2010': {'matches': 7}, 'WC-2014': {'matches': 7}}",30,8,4,3,2,3,0,10
+NZL,New Zealand,"{'WC-1982': {'matches': 3}, 'WC-2010': {'matches': 3}}",6,0,0,0,0,0,0,2
+NGA,Nigeria,"{'WC-1994': {'matches': 4}, 'WC-1998': {'matches': 4}, 'WC-2002': {'matches': 3}, 'WC-2010': {'matches': 3}, 'WC-2014': {'matches': 4}, 'WC-2018': {'matches': 3}}",18,3,0,0,0,0,0,6
+PRK,North Korea,"{'WC-1966': {'matches': 4}, 'WC-2010': {'matches': 3}}",6,0,1,0,0,0,0,2
+NIR,Northern Ireland,"{'WC-1958': {'matches': 5}, 'WC-1982': {'matches': 5}, 'WC-1986': {'matches': 3}}",12,0,1,0,0,0,0,3
+NOR,Norway,"{'WC-1938': {'matches': 1}, 'WC-1994': {'matches': 3}, 'WC-1998': {'matches': 4}}",6,2,0,0,0,0,0,3
+PAN,Panama,{'WC-2018': {'matches': 3}},3,0,0,0,0,0,0,1
+PRY,Paraguay,"{'WC-1930': {'matches': 2}, 'WC-1950': {'matches': 2}, 'WC-1958': {'matches': 3}, 'WC-1986': {'matches': 4}, 'WC-1998': {'matches': 4}, 'WC-2002': {'matches': 4}, 'WC-2006': {'matches': 3}, 'WC-2010': {'matches': 5}}",22,4,1,0,0,0,0,8
+PER,Peru,"{'WC-1930': {'matches': 2}, 'WC-1970': {'matches': 4}, 'WC-1978': {'matches': 6}, 'WC-1982': {'matches': 3}, 'WC-2018': {'matches': 3}}",17,0,1,0,0,0,0,5
+POL,Poland,"{'WC-1938': {'matches': 1}, 'WC-1974': {'matches': 7}, 'WC-1978': {'matches': 6}, 'WC-1982': {'matches': 7}, 'WC-1986': {'matches': 4}, 'WC-2002': {'matches': 3}, 'WC-2006': {'matches': 3}, 'WC-2018': {'matches': 3}}",29,2,0,1,2,0,0,8
+PRT,Portugal,"{'WC-1966': {'matches': 6}, 'WC-1986': {'matches': 3}, 'WC-2002': {'matches': 3}, 'WC-2006': {'matches': 7}, 'WC-2010': {'matches': 4}, 'WC-2014': {'matches': 3}, 'WC-2018': {'matches': 4}}",21,3,2,2,2,0,0,7
+IRL,Republic of Ireland,"{'WC-1990': {'matches': 5}, 'WC-1994': {'matches': 4}, 'WC-2002': {'matches': 4}}",9,3,1,0,0,0,0,3
+ROU,Romania,"{'WC-1930': {'matches': 2}, 'WC-1934': {'matches': 1}, 'WC-1938': {'matches': 2}, 'WC-1970': {'matches': 3}, 'WC-1990': {'matches': 4}, 'WC-1994': {'matches': 5}, 'WC-1998': {'matches': 4}}",14,6,1,0,0,0,0,7
+RUS,Russia,"{'WC-1994': {'matches': 3}, 'WC-2002': {'matches': 3}, 'WC-2014': {'matches': 3}, 'WC-2018': {'matches': 5}}",12,1,1,0,0,0,0,4
+SAU,Saudi Arabia,"{'WC-1994': {'matches': 4}, 'WC-1998': {'matches': 3}, 'WC-2002': {'matches': 3}, 'WC-2006': {'matches': 3}, 'WC-2018': {'matches': 3}}",15,1,0,0,0,0,0,5
+SCO,Scotland,"{'WC-1954': {'matches': 2}, 'WC-1958': {'matches': 3}, 'WC-1974': {'matches': 3}, 'WC-1978': {'matches': 3}, 'WC-1982': {'matches': 3}, 'WC-1986': {'matches': 3}, 'WC-1990': {'matches': 3}, 'WC-1998': {'matches': 3}}",23,0,0,0,0,0,0,8
+SEN,Senegal,"{'WC-2002': {'matches': 5}, 'WC-2018': {'matches': 3}}",6,1,1,0,0,0,0,2
+SRB,Serbia,"{'WC-2010': {'matches': 3}, 'WC-2018': {'matches': 3}}",6,0,0,0,0,0,0,2
+SCG,Serbia and Montenegro,{'WC-2006': {'matches': 3}},3,0,0,0,0,0,0,1
+SVK,Slovakia,{'WC-2010': {'matches': 4}},3,1,0,0,0,0,0,1
+SVN,Slovenia,"{'WC-2002': {'matches': 3}, 'WC-2010': {'matches': 3}}",6,0,0,0,0,0,0,2
+ZAF,South Africa,"{'WC-1998': {'matches': 3}, 'WC-2002': {'matches': 3}, 'WC-2010': {'matches': 3}}",9,0,0,0,0,0,0,3
+KOR,South Korea,"{'WC-1954': {'matches': 2}, 'WC-1986': {'matches': 3}, 'WC-1990': {'matches': 3}, 'WC-1994': {'matches': 3}, 'WC-1998': {'matches': 3}, 'WC-2002': {'matches': 7}, 'WC-2006': {'matches': 3}, 'WC-2010': {'matches': 4}, 'WC-2014': {'matches': 3}, 'WC-2018': {'matches': 3}}",29,2,1,1,1,0,0,10
+SUN,Soviet Union,"{'WC-1958': {'matches': 5}, 'WC-1962': {'matches': 4}, 'WC-1966': {'matches': 6}, 'WC-1970': {'matches': 4}, 'WC-1982': {'matches': 5}, 'WC-1986': {'matches': 4}, 'WC-1990': {'matches': 3}}",24,1,4,1,1,0,0,7
+ESP,Spain,"{'WC-1934': {'matches': 3}, 'WC-1950': {'matches': 6}, 'WC-1962': {'matches': 3}, 'WC-1966': {'matches': 3}, 'WC-1978': {'matches': 3}, 'WC-1982': {'matches': 5}, 'WC-1986': {'matches': 5}, 'WC-1990': {'matches': 4}, 'WC-1994': {'matches': 5}, 'WC-1998': {'matches': 3}, 'WC-2002': {'matches': 5}, 'WC-2006': {'matches': 4}, 'WC-2010': {'matches': 7}, 'WC-2014': {'matches': 3}, 'WC-2018': {'matches': 4}}",44,8,6,1,0,4,2,15
+SWE,Sweden,"{'WC-1934': {'matches': 2}, 'WC-1938': {'matches': 3}, 'WC-1950': {'matches': 5}, 'WC-1958': {'matches': 6}, 'WC-1970': {'matches': 3}, 'WC-1974': {'matches': 6}, 'WC-1978': {'matches': 3}, 'WC-1990': {'matches': 3}, 'WC-1994': {'matches': 7}, 'WC-2002': {'matches': 4}, 'WC-2006': {'matches': 4}, 'WC-2018': {'matches': 5}}",32,5,5,3,2,4,1,12
+CHE,Switzerland,"{'WC-1934': {'matches': 2}, 'WC-1938': {'matches': 3}, 'WC-1950': {'matches': 3}, 'WC-1954': {'matches': 4}, 'WC-1962': {'matches': 3}, 'WC-1966': {'matches': 3}, 'WC-1994': {'matches': 4}, 'WC-2006': {'matches': 4}, 'WC-2010': {'matches': 3}, 'WC-2014': {'matches': 4}, 'WC-2018': {'matches': 4}}",27,7,3,0,0,0,0,11
+TGO,Togo,{'WC-2006': {'matches': 3}},3,0,0,0,0,0,0,1
+TTO,Trinidad and Tobago,{'WC-2006': {'matches': 3}},3,0,0,0,0,0,0,1
+TUN,Tunisia,"{'WC-1978': {'matches': 3}, 'WC-1998': {'matches': 3}, 'WC-2002': {'matches': 3}, 'WC-2006': {'matches': 3}, 'WC-2018': {'matches': 3}}",15,0,0,0,0,0,0,5
+TUR,Turkey,"{'WC-1954': {'matches': 3}, 'WC-2002': {'matches': 7}}",6,1,1,1,1,0,0,2
+UKR,Ukraine,{'WC-2006': {'matches': 5}},3,1,1,0,0,0,0,1
+ARE,United Arab Emirates,{'WC-1990': {'matches': 3}},3,0,0,0,0,0,0,1
+USA,United States,"{'WC-1930': {'matches': 3}, 'WC-1934': {'matches': 1}, 'WC-1950': {'matches': 3}, 'WC-1990': {'matches': 3}, 'WC-1994': {'matches': 4}, 'WC-1998': {'matches': 3}, 'WC-2002': {'matches': 5}, 'WC-2006': {'matches': 3}, 'WC-2010': {'matches': 4}, 'WC-2014': {'matches': 4}}",26,5,1,1,0,0,0,10
+URY,Uruguay,"{'WC-1930': {'matches': 4}, 'WC-1950': {'matches': 4}, 'WC-1954': {'matches': 5}, 'WC-1962': {'matches': 3}, 'WC-1966': {'matches': 4}, 'WC-1970': {'matches': 6}, 'WC-1974': {'matches': 3}, 'WC-1986': {'matches': 4}, 'WC-1990': {'matches': 4}, 'WC-2002': {'matches': 3}, 'WC-2010': {'matches': 7}, 'WC-2014': {'matches': 4}, 'WC-2018': {'matches': 5}}",35,5,5,4,3,4,3,13
+WAL,Wales,{'WC-1958': {'matches': 5}},4,0,1,0,0,0,0,1
+YUG,Yugoslavia,"{'WC-1930': {'matches': 3}, 'WC-1950': {'matches': 3}, 'WC-1954': {'matches': 3}, 'WC-1958': {'matches': 4}, 'WC-1962': {'matches': 6}, 'WC-1974': {'matches': 6}, 'WC-1982': {'matches': 3}, 'WC-1990': {'matches': 5}, 'WC-1998': {'matches': 4}}",28,2,4,2,1,0,0,9
+COD,Zaire,{'WC-1974': {'matches': 3}},3,0,0,0,0,0,0,1

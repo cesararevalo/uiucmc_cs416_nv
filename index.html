@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2022 World Cup Predictions</title>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+    <script src="https://d3js.org/d3.v7.js"></script>
+    <style>
+        div#main_content {
+            margin: auto;
+            width: 60%;
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="main_content">
+
+    <h1>2022 World Cup Predictions</h1>
+
+    <p>
+        The 2022 World Cup Finals will take place in Qatar starting with the group stages on November 21st and ending
+        with the final on December 18th, 2022.
+    </p>
+
+    <h2>FIFA's Nation Members</h2>
+
+    <p>
+        FIFA has 211 nation members, there are more nations with football teams than for any other sport, with teams representing
+        191 of the 193 UN member states, as well as several dependent territories, sub-national entities, and states who are
+        not members of the United Nations.[1]
+    </p>
+    <p>
+        All of these teams could have qualified to the World Cup Finals.
+        The following map shows in teal the FIFA nations members, and in grey you can see the nations which are not a part
+        of FIFA, it covers almost the whole world!
+    </p>
+
+    <svg id="fifa_countries_viz" width="800" height="600"></svg>
+
+    <h2>Qualified Teams & Groups</h2>
+    <p>
+        Out of the 211 nation teams in FIFA, only <b>32 teams</b> qualify for the World Cup finals, highlighted in orange
+        here on the map.
+    </p>
+    <p>
+        Only two nations from outside Europe and South America have made the World Cup semifinals (the United States in
+        the inaugural competition in 1930 and South Korea in 2002). In 21 previous World Cups, only 13 countries have
+        reached the final — all from Europe or South America — and only eight sides have won the tournament. Since 1950,
+        only nine teams from outside UEFA (European soccer’s governing body) and CONMEBOL (South America’s) have reached
+        the quarterfinals.[3]
+    </p>
+
+    <svg id="wc_teams_viz" width="800" height="600"></svg>
+    <div id="wc_teams_viz_tooltip" width="80" height="60"></div>
+
+
+    <h2>Group Stage Predictions</h2>
+    <p>
+        For any given team the odds of winning are very small, but they are made even smaller if you are not one of the
+        previous winners, a team from Europe or South America.
+    </p>
+
+
+    <h2>Knockout Stage Predictions</h2>
+    <p>
+        ...
+    </p>
+
+    <h2>Winner!</h2>
+    <p>
+        ...
+    </p>
+
+
+    <p>&nbsp;</p><p>&nbsp;</p>
+    <h1>References</h1>
+    <ol>
+        <li>https://en.wikipedia.org/wiki/List_of_men%27s_national_association_football_teams</li>
+        <li>https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson</li>
+        <li>https://fivethirtyeight.com/features/europe-and-south-america-are-growing-in-soccer-power-that-wasnt-supposed-to-happen/</li>
+    </ol>
+
+</div>
+
+<script>
+
+/** FIRST MAP **/
+// The svg
+var svg = d3.select("#fifa_countries_viz"),
+  width = +svg.attr("width"),
+  height = +svg.attr("height");
+
+// Map and projection
+var path = d3.geoPath();
+var projection = d3.geoMercator()
+  .scale(120)
+  .center([0,20])
+  .translate([width / 2, height / 2]);
+
+// Data and color scale
+let data = new Map();
+
+// Load external data and boot
+Promise.all([
+d3.json("world.geojson"),
+d3.csv("fifa_country_codes.csv", function(d) {
+    data.set(d.iso_alpha_code, d.iso_id_code);
+})
+]).then(function(loadData) {
+    let topo = loadData[0]
+
+  // Draw the map
+  svg.append("g")
+    .selectAll("path")
+    .data(topo.features)
+    .enter()
+    .append("path")
+      // draw each country
+      .attr("d", d3.geoPath()
+        .projection(projection)
+      )
+      // set the color of each country
+      .attr("fill", function (d) {
+        if (!isNaN(data.get(d.id))) {
+            return "teal";
+        } else {
+            return "grey";
+        }
+      });
+});
+
+
+/** SECOND MAP **/
+
+var wc_teams_viz_tooltip = d3.select("#wc_teams_viz_tooltip");
+
+// The svg
+var wc_teams_svg = d3.select("#wc_teams_viz"),
+  wc_teams_width = +wc_teams_svg.attr("width"),
+  wc_teams_height = +wc_teams_svg.attr("height");
+
+// Map and projection
+var wc_teams_path = d3.geoPath();
+var wc_teams_projection = d3.geoMercator()
+  .scale(120)
+  .center([0,20])
+  .translate([wc_teams_width / 2, wc_teams_height / 2]);
+
+// Data and color scale
+let wc_teams_data = new Map();
+
+// Load external data and boot
+Promise.all([
+d3.json("world.geojson"),
+d3.csv("2022_wc_countries.csv", function(d) {
+    wc_teams_data.set(d.iso_alpha_code, d);
+})
+]).then(function wc_teams_ready(loadData) {
+    let topo = loadData[0];
+
+  // Draw the map
+  wc_teams_svg.append("g")
+    .selectAll("path")
+    .data(topo.features)
+    .enter()
+    .append("path")
+      // draw each country
+      .attr("d", d3.geoPath()
+        .projection(wc_teams_projection)
+      )
+      // set the color of each country
+      .attr("fill", function (d) {
+        if (wc_teams_data.get(d.id)) {
+            return wc_teams_data.get(d.id).color;
+        } if (data.get(d.id)) {
+            return "teal";
+        } else {
+            return "grey";
+        }
+      })
+      // set an ID for each country path
+      .attr("id", function (d) {
+        return d.id;
+      })
+      .on("mouseover", function(d) {
+            wc_teams_viz_tooltip.style("visibility", "visible");
+        })
+      .on("mousemove", function(d) {
+            wc_teams_viz_tooltip.style("top", (event.pageY-10)+"px")
+                .style("position", "absolute")
+                .style("background", "white")
+                .style("left",(event.pageX-10)+"px")
+                .style("padding", "3px 3px 3px 3px");
+
+            var tooltip_html = "" + wc_teams_data.get(this.id).country + " has:";
+            tooltip_html += "<ul>";
+            if (wc_teams_data.get(this.id).winner > 0) {
+                tooltip_html += "<li>Won " + wc_teams_data.get(this.id).winner + " times!</li>";
+            }
+            tooltip_html += "<li>Participated in " + wc_teams_data.get(this.id).participations + " different World Cups!</li>";
+            tooltip_html += "</ul>";
+
+            wc_teams_viz_tooltip.html(tooltip_html);
+        })
+      .on("mouseleave", function(){
+            return wc_teams_viz_tooltip.style("visibility", "hidden");
+        });
+  ;
+});
+
+</script>
+</body>
+</html>
