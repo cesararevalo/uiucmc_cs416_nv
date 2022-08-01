@@ -5,12 +5,16 @@
     <title>2022 World Cup Predictions</title>
     <script src="https://unpkg.com/topojson-client@3"></script>
     <script src="https://d3js.org/d3.v7.js"></script>
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
     <style>
         div#main_content {
             margin: auto;
             width: 60%;
             border: 1px solid black;
             padding: 10px;
+        }
+        g.annotation-subject {
+            pointer-events: none;
         }
     </style>
 </head>
@@ -106,8 +110,8 @@ var svg = d3.select("#fifa_countries_viz"),
 // Map and projection
 var path = d3.geoPath();
 var projection = d3.geoMercator()
-  .scale(120)
-  .center([0,20])
+  .scale(160)
+  .center([10,10])
   .translate([width / 2, height / 2]);
 
 // Data and color scale
@@ -155,8 +159,8 @@ var wc_teams_svg = d3.select("#wc_teams_viz"),
 // Map and projection
 var wc_teams_path = d3.geoPath();
 var wc_teams_projection = d3.geoMercator()
-  .scale(120)
-  .center([0,20])
+  .scale(160)
+  .center([10,10])
   .translate([wc_teams_width / 2, wc_teams_height / 2]);
 
 // Data and color scale
@@ -171,55 +175,104 @@ d3.csv("2022_wc_countries.csv", function(d) {
 ]).then(function wc_teams_ready(loadData) {
     let topo = loadData[0];
 
-  // Draw the map
-  wc_teams_svg.append("g")
-    .selectAll("path")
-    .data(topo.features)
-    .enter()
-    .append("path")
-      // draw each country
-      .attr("d", d3.geoPath()
-        .projection(wc_teams_projection)
-      )
-      // set the color of each country
-      .attr("fill", function (d) {
-        if (wc_teams_data.get(d.id)) {
-            return wc_teams_data.get(d.id).color;
-        } if (data.get(d.id)) {
-            return "teal";
-        } else {
-            return "grey";
-        }
-      })
-      // set an ID for each country path
-      .attr("id", function (d) {
-        return d.id;
-      })
-      .on("mouseover", function(d) {
-            wc_teams_viz_tooltip.style("visibility", "visible");
-        })
-      .on("mousemove", function(d) {
-            wc_teams_viz_tooltip.style("top", (event.pageY+10)+"px")
-                .style("position", "absolute")
-                .style("background", "white")
-                .style("left",(event.pageX+10)+"px")
-                .style("padding", "3px 3px 3px 3px");
-
-            var tooltip_html = "" + wc_teams_data.get(this.id).country + " has:";
-            tooltip_html += "<ul>";
-            if (wc_teams_data.get(this.id).winner > 0) {
-                tooltip_html += "<li>Won " + wc_teams_data.get(this.id).winner + " times!</li>";
+    // Draw the map
+    wc_teams_svg
+        .append("g")
+        .selectAll("path")
+        .data(topo.features)
+        .enter()
+        .append("path")
+          // draw each country
+          .attr("d", d3.geoPath()
+            .projection(wc_teams_projection)
+          )
+          // set the color of each country
+          .attr("fill", function (d) {
+            if (wc_teams_data.get(d.id)) {
+                return wc_teams_data.get(d.id).color;
+            } if (data.get(d.id)) {
+                return "teal";
+            } else {
+                return "grey";
             }
-            tooltip_html += "<li>Participated in " + wc_teams_data.get(this.id).participations + " different World Cups!</li>";
-            tooltip_html += "</ul>";
+          })
+          // set an ID for each country path
+          .attr("id", function (d) {
+            return d.id;
+          })
+          .on("mouseover", function(d) {
+                if (wc_teams_data.get(this.id) === undefined) {
+                    return;
+                }
+                wc_teams_viz_tooltip.style("visibility", "visible");
+            })
+          .on("mousemove", function(d) {
 
-            wc_teams_viz_tooltip.html(tooltip_html);
-        })
-      .on("mouseleave", function(){
-            return wc_teams_viz_tooltip.style("visibility", "hidden");
-        });
-  ;
+                if (wc_teams_data.get(this.id) === undefined) {
+                    return;
+                }
+
+                wc_teams_viz_tooltip.style("top", (event.pageY+10)+"px")
+                    .style("position", "absolute")
+                    .style("background", "white")
+                    .style("left",(event.pageX+10)+"px")
+                    .style("padding", "3px 3px 3px 3px");
+
+                var tooltip_html = "" + wc_teams_data.get(this.id).country + " has:";
+                tooltip_html += "<ul>";
+                if (wc_teams_data.get(this.id).winner > 0) {
+                    tooltip_html += "<li>Won " + wc_teams_data.get(this.id).winner + " times!</li>";
+                }
+                tooltip_html += "<li>Participated in " + wc_teams_data.get(this.id).participations + " different World Cups!</li>";
+                tooltip_html += "</ul>";
+
+                wc_teams_viz_tooltip.html(tooltip_html);
+            })
+          .on("mouseleave", function(){
+                wc_teams_viz_tooltip.html("");
+                wc_teams_viz_tooltip.style("visibility", "hidden");
+            });
+
+    wc_teams_svg.append("g").attr('pointer-event', 'none').call(makeAnnotations)
+
 });
+
+const annotations = [
+  {
+    note: {
+      label: "Brazil, Argentina and Uruguay have been the only non-European nations to win the Wold Cup. Winning 9 out of the 21 past World Cups.",
+      title: "South America Nations"
+    },
+    type: d3.annotationCalloutCircle,
+    subject: {
+      radius: 100,         // circle radius
+      radiusPadding: 60   // white space around circle befor connector
+    },
+    color: ["red"],
+    x: 220,
+    y: 390,
+    dy: 10,
+    dx: -100
+  },
+  {
+    note: {
+      label: "Have won 12 World Cups.",
+      title: "European Nations"
+    },
+    type: d3.annotationCalloutCircle,
+    subject: {
+      radius: 60,         // circle radius
+      radiusPadding: 30   // white space around circle befor connector
+    },
+    color: ["red"],
+    x: 370,
+    y: 170,
+    dy: -5,
+    dx: -60
+  }
+];
+
+const makeAnnotations = d3.annotation().annotations(annotations);
 
 </script>
 </body>
