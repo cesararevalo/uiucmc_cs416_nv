@@ -22,9 +22,11 @@
 
     <p>
         The 2022 World Cup Finals will take place in Qatar starting with the group stages on November 21st and ending
-        with the final on December 18th, 2022.
+        with the final on December 18th, 2022. Follow along to find out which nation is most likely to win this next
+        World Cup!
     </p>
 
+    <p>&nbsp;</p>
     <h2>FIFA's Nation Members</h2>
 
     <p>
@@ -40,6 +42,7 @@
 
     <svg id="fifa_countries_viz" width="800" height="600"></svg>
 
+    <p>&nbsp;</p>
     <h2>Qualified Teams & Groups</h2>
     <p>
         Out of the 211 nation teams in FIFA, only <b>32 teams</b> qualify for the World Cup finals, highlighted in orange
@@ -52,18 +55,25 @@
         only nine teams from outside UEFA (European soccer’s governing body) and CONMEBOL (South America’s) have reached
         the quarterfinals.[3]
     </p>
+    <p>
+        The following map highlights the nations which qualified to the World Cup, and hovering over them provides
+        additional information from their previous participations. Can you find in the map the team that has won the
+        most World Cups?
+    </p>
 
     <svg id="wc_teams_viz" width="800" height="600"></svg>
     <div id="wc_teams_viz_tooltip" width="80" height="60"></div>
 
-
+    <p>&nbsp;</p>
     <h2>Group Stage Predictions</h2>
     <p>
         For any given team the odds of winning are very small, but they are made even smaller if you are not one of the
         previous winners, a team from Europe or South America.
     </p>
 
+    <div id="group_stage_tables"></div>
 
+    <p>&nbsp;</p>
     <h2>Knockout Stage Predictions</h2>
     <p>
         ...
@@ -189,10 +199,10 @@ d3.csv("2022_wc_countries.csv", function(d) {
             wc_teams_viz_tooltip.style("visibility", "visible");
         })
       .on("mousemove", function(d) {
-            wc_teams_viz_tooltip.style("top", (event.pageY-10)+"px")
+            wc_teams_viz_tooltip.style("top", (event.pageY+10)+"px")
                 .style("position", "absolute")
                 .style("background", "white")
-                .style("left",(event.pageX-10)+"px")
+                .style("left",(event.pageX+10)+"px")
                 .style("padding", "3px 3px 3px 3px");
 
             var tooltip_html = "" + wc_teams_data.get(this.id).country + " has:";
