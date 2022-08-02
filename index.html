@@ -16,6 +16,15 @@
         g.annotation-subject {
             pointer-events: none;
         }
+        table, th, td {
+          border: 1px solid;
+        }
+        tr td {
+          padding: 5px;
+        }
+        table {
+          text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -75,7 +84,24 @@
         previous winners, a team from Europe or South America.
     </p>
 
-    <div id="group_stage_tables"></div>
+    <div id="group_stage_tables">
+        <h4>Group A</h4>
+        <table id="group_a"></table>
+        <h4>Group B</h4>
+        <table id="group_b"></table>
+        <h4>Group C</h4>
+        <table id="group_c"></table>
+        <h4>Group D</h4>
+        <table id="group_d"></table>
+        <h4>Group E</h4>
+        <table id="group_e"></table>
+        <h4>Group F</h4>
+        <table id="group_f"></table>
+        <h4>Group G</h4>
+        <table id="group_g"></table>
+        <h4>Group H</h4>
+        <table id="group_h"></table>
+    </div>
 
     <p>&nbsp;</p>
     <h2>Knockout Stage Predictions</h2>
@@ -235,6 +261,8 @@ d3.csv("2022_wc_countries.csv", function(d) {
 
     wc_teams_svg.append("g").attr('pointer-event', 'none').call(makeAnnotations)
 
+    // Add the group stage predictions
+    groupStagePredictions();
 });
 
 const annotations = [
@@ -273,6 +301,42 @@ const annotations = [
 ];
 
 const makeAnnotations = d3.annotation().annotations(annotations);
+
+/** Group Stage Predictions **/
+
+var groups = ["a", "b", "c", "d", "e", "f", "g", "h"];
+
+groups.forEach(function(group) {
+    d3.select("#group_" + group).append("thead").html("<tr>" +
+            "<td>Country</td>" +
+            "<td>Round of 16</td>" +
+            "<td>Quarter Finals</td>" +
+            "<td>Semi-Finals</td>" +
+            "<td>Finals</td>" +
+            "<td>Wins</td>" +
+            "<td>Group Stage Chance</td>" +
+            "<td>Group First?</td>" +
+            "<td>Group Second?</td>" +
+        "</tr>");
+    d3.select("#group_" + group).append("tbody");
+});
+
+function groupStagePredictions() {
+    wc_teams_data.forEach(function(country) {
+        d3.select("#group_" + country.wc_group.toLowerCase()).select("tbody").
+            append("tr").html(
+                "<td>" + country.country + "</td>" +
+                "<td>" + country.round_of_16 + "</td>" +
+                "<td>" + country.quarterfinals + "</td>" +
+                "<td>" + country.semifinals + "</td>" +
+                "<td>" + country.finals + "</td>" +
+                "<td>" + country.winner + "</td>" +
+                "<td id='group_" + country.wc_group.toLowerCase() + "_country_" + country.country + "'>" + parseFloat(country.chance_of_passing_round_of_16*100).toFixed(2)+"%" + "</td>" +
+                "<td>" + country.first_in_group + "</td>" +
+                "<td>" + country.second_in_group + "</td>"
+            );
+    });
+};
 
 </script>
 </body>

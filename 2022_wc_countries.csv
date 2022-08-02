@@ -1,33 +1,33 @@
-country,fifa_cod,iso_alpha_code,iso_id_code,wc_group,color,participations,round_of_16,quarterfinals,semifinals,finals,winner
-Ecuador,ECU,ECU,218,A,#d9ed92,3,1,0,0,0,0
-Netherlands,NED,NLD,528,A,#b5e48c,10,8,4,3,2,0
-Qatar,QAT,QAT,634,A,#99d98c,0,0,0,0,0,0
-Senegal,SEN,SEN,686,A,#76c893,2,1,1,0,0,0
-England,ENG,GBR,826,B,#52b69a,15,7,9,3,2,1
-Iran,IRN,IRN,364,B,#3ba0a4,5,0,0,0,0,0
-United States,USA,USA,840,B,#168aad,10,5,1,1,0,0
-Wales,WAL,GBR,826,B,#1a759f,1,0,1,0,0,0
-Argentina,ARG,ARG,32,C,#1e6091,17,9,7,4,0,2
-Mexico,MEX,MEX,484,C,#198e77,16,8,2,0,0,0
-Poland,POL,POL,616,C,#22577a,8,2,0,1,2,0
-Saudi Arabia,KSA,SAU,682,C,#38a3f5,5,1,0,0,0,0
-Australia,AUS,AUS,36,D,#57cc99,5,1,0,0,0,0
-Denmark,DEN,DNK,208,D,#80ed99,5,4,1,0,0,0
-France,FRA,FRA,250,D,#c7f9cc,15,7,7,6,3,2
-Tunisia,TUN,TUN,788,D,#116644,5,0,0,0,0,0
-Costa Rica,CRC,CRI,188,E,#559977,5,2,1,0,0,0
-Germany,GER,DEU,276,E,#008844,19,11,14,12,5,4
-Japan,JPN,JPN,392,E,#33aa77,6,3,0,0,0,0
-Spain,ESP,ESP,724,E,#d9ad92,15,8,6,1,0,1
-Belgium,BEL,BEL,56,F,#b5b48c,13,8,3,2,2,0
-Canada,CAN,CAN,124,F,#99c98c,1,0,0,0,0,0
-Croatia,CRO,HRV,191,F,#76d893,5,2,2,2,1,0
-Morocco,MAR,MAR,504,F,#52e69a,5,1,0,0,0,0
-Brazil,BRA,BRA,76,G,#34f0a4,21,11,14,8,4,5
-Cameroon,CMR,CMR,120,G,#16aafa,7,1,1,0,0,0
-Serbia,SRB,SRB,688,G,#1ab59f,2,0,0,0,0,0
-Switzerland,SUI,CHE,756,G,#1ec091,11,7,3,0,0,0
-Ghana,GHA,GHA,288,H,#18de77,3,2,1,0,0,0
-South Korea,KOR,KOR,410,H,#22e77a,10,2,1,1,1,0
-Portugal,POR,PRT,620,H,#38f3a5,7,3,2,2,2,0
-Uruguay,URU,URY,858,H,#afbc99,13,5,5,4,3,2
+country,fifa_cod,iso_alpha_code,iso_id_code,wc_group,color,participations,round_of_16,quarterfinals,semifinals,finals,winner,chance_of_passing_round_of_16,first_in_group,second_in_group
+Ecuador,ECU,ECU,218,A,#d9ed92,3,1,0,0,0,0,0.1,0,0
+Netherlands,NED,NLD,528,A,#b5e48c,10,8,4,3,2,0,0.8,1,0
+Qatar,QAT,QAT,634,A,#99d98c,0,0,0,0,0,0,0,0,0
+Senegal,SEN,SEN,686,A,#76c893,2,1,1,0,0,0,0.1,0,1
+England,ENG,ENG,826,B,#52b69a,15,7,9,3,2,1,0.583333333333333,1,0
+Iran,IRN,IRN,364,B,#3ba0a4,5,0,0,0,0,0,0,0,0
+United States,USA,USA,840,B,#168aad,10,5,1,1,0,0,0.416666666666667,0,1
+Wales,WAL,WAL,826,B,#1a759f,1,0,1,0,0,0,0,0,0
+Argentina,ARG,ARG,32,C,#1e6091,17,9,7,4,0,2,0.45,1,0
+Mexico,MEX,MEX,484,C,#198e77,16,8,2,0,0,0,0.4,0,1
+Poland,POL,POL,616,C,#22577a,8,2,0,1,2,0,0.1,0,0
+Saudi Arabia,KSA,SAU,682,C,#38a3f5,5,1,0,0,0,0,0.05,0,0
+Australia,AUS,AUS,36,D,#57cc99,5,1,0,0,0,0,0.083333333333333,0,0
+Denmark,DEN,DNK,208,D,#80ed99,5,4,1,0,0,0,0.333333333333333,0,1
+France,FRA,FRA,250,D,#c7f9cc,15,7,7,6,3,2,0.583333333333333,1,0
+Tunisia,TUN,TUN,788,D,#116644,5,0,0,0,0,0,0,0,0
+Costa Rica,CRC,CRI,188,E,#559977,5,2,1,0,0,0,0.083333333333333,0,0
+Germany,GER,DEU,276,E,#008844,19,11,14,12,5,4,0.458333333333333,1,0
+Japan,JPN,JPN,392,E,#33aa77,6,3,0,0,0,0,0.125,0,0
+Spain,ESP,ESP,724,E,#d9ad92,15,8,6,1,0,1,0.333333333333333,0,1
+Belgium,BEL,BEL,56,F,#b5b48c,13,8,3,2,2,0,0.727272727272727,1,0
+Canada,CAN,CAN,124,F,#99c98c,1,0,0,0,0,0,0,0,0
+Croatia,CRO,HRV,191,F,#76d893,5,2,2,2,1,0,0.181818181818182,0,1
+Morocco,MAR,MAR,504,F,#52e69a,5,1,0,0,0,0,0.090909090909091,0,0
+Brazil,BRA,BRA,76,G,#34f0a4,21,11,14,8,4,5,0.578947368421053,1,0
+Cameroon,CMR,CMR,120,G,#16aafa,7,1,1,0,0,0,0.052631578947368,0,0
+Serbia,SRB,SRB,688,G,#1ab59f,2,0,0,0,0,0,0,0,0
+Switzerland,SUI,CHE,756,G,#1ec091,11,7,3,0,0,0,0.368421052631579,0,1
+Ghana,GHA,GHA,288,H,#18de77,3,2,1,0,0,0,0.166666666666667,0,0
+South Korea,KOR,KOR,410,H,#22e77a,10,2,1,1,1,0,0.166666666666667,0,0
+Portugal,POR,PRT,620,H,#38f3a5,7,3,2,2,2,0,0.25,0,1
+Uruguay,URU,URY,858,H,#afbc99,13,5,5,4,3,2,0.416666666666667,1,0
