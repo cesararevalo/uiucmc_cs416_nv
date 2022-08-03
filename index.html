@@ -25,6 +25,24 @@
         table {
           text-align: center;
         }
+
+        .node rect {
+          fill: #fff;
+          stroke: lightgrey;
+          stroke-width: 2px;
+        }
+
+        .node text { font: 12px sans-serif; }
+
+        .node--internal text {
+          text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+        }
+
+        .link {
+          fill: none;
+          stroke: teal;
+          stroke-width: 3px;
+        }
     </style>
 </head>
 <body>
@@ -83,6 +101,11 @@
         For any given team the odds of winning are very small, but they are made even smaller if you are not one of the
         previous winners, a team from Europe or South America.
     </p>
+    <p>
+        The table below shows the different groups in the tournament, as well as stats from previous participations.
+        I calculated the chances of passing from the group stages to the round of 16 based on past success getting past
+        the group stage round. Changing the country to pass in first or second to see how this affects the knockout stage.
+    </p>
 
     <div id="group_stage_tables">
         <h4>Group A</h4>
@@ -106,12 +129,25 @@
     <p>&nbsp;</p>
     <h2>Knockout Stage Predictions</h2>
     <p>
-        ...
+        First and second places from each group pass onto the knockout stages. Based on past appearances information at
+        each of these stages, I calculated their chances of passing based on whether they had gone on to the next stage
+        more often than their rival.
     </p>
+    <p>
+        The chances of an European team winning are very high, not just because they have the most number of teams
+        in the competition - 13 teams out of 32 teams are from Europe - but also because historically they have done
+        very well in the knockout stages. Will the South Americans be able to stop 5 wins in a row from the European Nations?
+    </p>
+    <p>
+        Click on a country to select the winner from each of the knockout stages, and see how the treemap changes.
+    </p>
+
+    <div id="knockout_stages_treemap"></div>
 
     <h2>Winner!</h2>
     <p>
-        ...
+        According to my predictions, Germany is going to win this World Cup! And if they do, they would arguably have one of
+        the toughest paths to get there.
     </p>
 
 
@@ -332,11 +368,266 @@ function groupStagePredictions() {
                 "<td>" + country.finals + "</td>" +
                 "<td>" + country.winner + "</td>" +
                 "<td id='group_" + country.wc_group.toLowerCase() + "_country_" + country.country + "'>" + parseFloat(country.chance_of_passing_round_of_16*100).toFixed(2)+"%" + "</td>" +
-                "<td>" + country.first_in_group + "</td>" +
-                "<td>" + country.second_in_group + "</td>"
+                "<td><input type='radio' id='group_" + country.wc_group.toLowerCase() + "_first' value='" + country.iso_alpha_code + "' name='group_" + country.wc_group.toLowerCase() + "_first' value='" + country.country + "' data-group='" + country.wc_group.toLowerCase() + "' data-first='" + ("1" === country.first_in_group ? "true" : "false") + "' " + ("1" === country.first_in_group ? "checked" : "") + "></td>" +
+                "<td><input type='radio' id='group_" + country.wc_group.toLowerCase() + "_second' value='" + country.iso_alpha_code + "' name='group_" + country.wc_group.toLowerCase() + "_second' value='" + country.country + "' data-group='" + country.wc_group.toLowerCase() + "' data-second='" + ("1" === country.second_in_group ? "true" : "false") + "' " + ("1" === country.second_in_group ? "checked" : "") + "></td>"
             );
     });
+
+    d3.selectAll("input[type='radio']").on("change", function() {
+        console.log(this.value)
+        console.log(this.dataset.group)
+        console.log(this.dataset.first)
+        console.log(this.dataset.second)
+
+        // first selected
+        if (this.dataset.first !== undefined) {
+            // find the previously selected first
+            var previous_first = d3.select("input[name='group_" + this.dataset.group + "_first'][data-first='true']").node();
+            console.log("previous_first: " + previous_first.value);
+
+            // Check if it's the same as second, then switch
+            if (this.value === d3.select("input[name='group_" + this.dataset.group + "_second'][data-second='true']").property('value')) {
+                console.log('Same as second');
+
+                // old second
+                var previous_second = d3.select("input[name='group_" + this.dataset.group + "_second'][data-second='true']").node();
+                previous_second.checked = false;
+                previous_second.dataset.second = 'false';
+
+                // new second
+                var new_second = d3.select("input[name='group_" + this.dataset.group + "_second'][value='" + previous_first.value + "']").node();
+                new_second.checked = true;
+                new_second.dataset.second = 'true';
+            }
+
+            // switch previous first to false
+            previous_first.dataset.first = 'false';
+
+            this.dataset.first = 'true';
+        }
+        // second selected
+        else if (this.dataset.second !== undefined) {
+            // find the previously selected second
+            var previous_second = d3.select("input[name='group_" + this.dataset.group + "_second'][data-second='true']").node();
+            console.log("previous_second: " + previous_second.value);
+
+            // Check if it's the same as first, then switch
+            if (this.value === d3.select("input[name='group_" + this.dataset.group + "_first'][data-first='true']").property('value')) {
+                console.log('Same as first');
+
+                // old first
+                var previous_first = d3.select("input[name='group_" + this.dataset.group + "_first'][data-first='true']").node();
+                previous_first.checked = false;
+                previous_first.dataset.first = 'false';
+
+                // new first
+                var new_first = d3.select("input[name='group_" + this.dataset.group + "_first'][value='" + previous_second.value + "']").node();
+                new_first.checked = true;
+                new_first.dataset.first = 'true';
+            }
+
+            // switch previous first to false
+            previous_second.dataset.second = 'false';
+
+            this.dataset.second = 'true';
+        };
+    });
 };
+
+
+/** SCENE 4 - Knockout Stages **/
+
+
+var treeData =
+  {
+    "name": "Final",
+    "stage": "final",
+    "home_team": 'Germany',
+    "away_team": 'France',
+    "winner": 'Germany',
+    "children": [
+      {
+        "name": "Semi-final 1",
+        "home_team": 'Argentina',
+        "away_team": 'Germany',
+        "winner": 'Germany',
+        "children": [
+          {
+            "name": "Quarter-final - 1",
+            "home_team": 'Netherlands',
+            "away_team": 'Argentina',
+            "winner": 'Argentina',
+            "children": [
+                {
+                    "name": "Round of 16 - A1 vs B2",
+                    "home_team": 'Netherlands',
+                    "away_team": 'Senegal',
+                    "winner": 'Netherlands'
+                  },
+                  {
+                    "name": "Round of 16 - C1 vs D2",
+                    "home_team": 'Argentina',
+                    "away_team": 'Denmark',
+                    "winner": 'Argentina'
+                  }
+            ]
+          },
+          {
+            "name": "Quarter-final - 2",
+            "home_team": 'Germany',
+            "away_team": 'Brazil',
+            "winner": 'Germany',
+            "children": [
+                {
+                    "name": "Round of 16 - E1 vs F2",
+                    "home_team": 'Germany',
+                    "away_team": 'Croatia',
+                    "winner": 'Germany'
+                  },
+                  {
+                    "name": "Round of 16 - G1 vs H2",
+                    "home_team": 'Brazil',
+                    "away_team": 'Portugal',
+                    "winner": 'Brazil'
+                  }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Semi-final 2",
+        "home_team": 'France',
+        "away_team": 'Uruguay',
+        "winner": 'France',
+        "children": [
+          {
+            "name": "Quarter-final - 3",
+            "home_team": 'England',
+            "away_team": 'France',
+            "winner": 'France',
+            "children": [
+              {
+                "name": "Round of 16 - B1 vs A2",
+                "home_team": 'England',
+                "away_team": 'Senegal',
+                "winner": 'England'
+              },
+              {
+                "name": "Round of 16 - D1 vs C2",
+                "home_team": 'France',
+                "away_team": 'Mexico',
+                "winner": 'France'
+              }
+            ]
+          },
+          {
+            "name": "Quarter-final - 4",
+            "home_team": 'Spain',
+            "away_team": 'Uruguay',
+            "winner": 'Uruguay',
+            "children": [
+              {
+                "name": "Round of 16 - F1 vs E2",
+                "home_team": 'Belgium',
+                "away_team": 'Spain',
+                "winner": 'Spain'
+              },
+              {
+                "name": "Round of 16 - H1 vs G2",
+                "home_team": 'Uruguay',
+                "away_team": 'Switzerland',
+                "winner": 'Uruguay'
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  };
+
+// set the dimensions and margins of the diagram
+var tm_margin = {top: 20, right: 100, bottom: 30, left: 90},
+    tm_width = 800 - tm_margin.left - tm_margin.right,
+    tm_height = 800 - tm_margin.top - tm_margin.bottom;
+
+// declares a tree layout and assigns the size
+var treemap = d3.tree()
+    .size([tm_height, tm_width]);
+
+//  assigns the data to a hierarchy using parent-child relationships
+var nodes = d3.hierarchy(treeData, function(d) {
+    return d.children;
+  });
+
+// maps the node data to the tree layout
+nodes = treemap(nodes);
+
+// append the svg object to the #knockout_stages_treemap div
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
+var tm_svg = d3.select("#knockout_stages_treemap").append("svg")
+      .attr("width", tm_width + tm_margin.left + tm_margin.right)
+      .attr("height", tm_height + tm_margin.top + tm_margin.bottom),
+    tm_g = tm_svg.append("g")
+      .attr("transform",
+            "translate(" + tm_margin.left + "," + tm_margin.top + ")");
+
+// line connector between nodes
+  var line = d3.line()
+    .x(d => tm_width - d.y)
+    .y(d => d.x)
+  	.curve(d3.curveStep);
+
+// adds the links between the nodes
+var link = tm_g.selectAll(".link")
+    .data( nodes.descendants().slice(1))
+  .enter().append("path")
+    .attr("class", "link")
+    .attr("d", d => line([d, d.parent ]));
+
+// adds each node as a group
+var node = tm_g.selectAll(".node")
+    .data(nodes.descendants())
+  .enter().append("g")
+    .attr("class", function(d) {
+      return "node" +
+        (d.children ? " node--internal" : " node--leaf"); })
+    .attr("transform", function(d) {
+      return "translate(" + (tm_width - d.y) + "," + d.x + ")"; });
+
+// adds the circle to the node
+node.append("rect")
+  .attr("width", 125)
+  .attr("height", 17)
+  .attr("x", function(d) { return -50; })
+  .attr("y", function(d) { return -15; });
+
+// adds the circle to the node
+node.append("rect")
+  .attr("width", 125)
+  .attr("height", 17)
+  .attr("x", function(d) { return -50; })
+  .attr("y", function(d) { return 2; });
+
+// adds the text to the node
+node.append("text")
+  .attr("x", function(d) { return -50; })
+  .attr("y", function(d) { return -20; })
+  .text(function(d) { return d.data.name; });
+
+// adds the text to the node
+node.append("text")
+  .attr("x", function(d) { return -47; })
+  .attr("y", function(d) { return -3; })
+  .text(function(d) { return d.data.home_team + (d.data.winner === d.data.home_team ? " (W)" : ""); });
+
+// adds the text to the node
+node.append("text")
+  .attr("x", function(d) { return -47; })
+  .attr("y", function(d) { return 15; })
+  .text(function(d) { return d.data.away_team + (d.data.winner === d.data.away_team ? " (W)" : ""); });
+
+
 
 </script>
 </body>
