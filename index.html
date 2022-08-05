@@ -144,14 +144,15 @@
 
     <div id="knockout_stages_treemap"></div>
 
-    <h2>Winner!</h2>
+    <h2>Winner, Germany!</h2>
     <p>
-        According to my predictions, Germany is going to win this World Cup! And if they do, they would arguably have one of
-        the toughest paths to get there.
+        According to my predictions, Germany will have one of the toughest paths to get to the final - Portugal, Brazil,
+        Argentina and France! - and if they win, they will not only take the most coveted FIFA World Cup Trophy, but
+        they will end up tying Brazil with 5 wins!
     </p>
 
 
-    <p>&nbsp;</p><p>&nbsp;</p>
+    <p>&nbsp;</p>
     <h1>References</h1>
     <ol>
         <li>https://en.wikipedia.org/wiki/List_of_men%27s_national_association_football_teams</li>
@@ -299,6 +300,9 @@ d3.csv("2022_wc_countries.csv", function(d) {
 
     // Add the group stage predictions
     groupStagePredictions();
+
+    // Add the knockout stage treemap
+    drawKnockOutStage();
 });
 
 const annotations = [
@@ -374,20 +378,20 @@ function groupStagePredictions() {
     });
 
     d3.selectAll("input[type='radio']").on("change", function() {
-        console.log(this.value)
-        console.log(this.dataset.group)
-        console.log(this.dataset.first)
-        console.log(this.dataset.second)
+        //console.log(this.value)
+        //console.log(this.dataset.group)
+        //console.log(this.dataset.first)
+        //console.log(this.dataset.second)
 
         // first selected
         if (this.dataset.first !== undefined) {
             // find the previously selected first
             var previous_first = d3.select("input[name='group_" + this.dataset.group + "_first'][data-first='true']").node();
-            console.log("previous_first: " + previous_first.value);
+            //console.log("previous_first: " + previous_first.value);
 
             // Check if it's the same as second, then switch
             if (this.value === d3.select("input[name='group_" + this.dataset.group + "_second'][data-second='true']").property('value')) {
-                console.log('Same as second');
+                //console.log('Same as second');
 
                 // old second
                 var previous_second = d3.select("input[name='group_" + this.dataset.group + "_second'][data-second='true']").node();
@@ -398,22 +402,26 @@ function groupStagePredictions() {
                 var new_second = d3.select("input[name='group_" + this.dataset.group + "_second'][value='" + previous_first.value + "']").node();
                 new_second.checked = true;
                 new_second.dataset.second = 'true';
+
+                changeGroupStage(treeData, this.dataset.group, '2', previous_second.value, new_second.value)
             }
 
             // switch previous first to false
             previous_first.dataset.first = 'false';
 
             this.dataset.first = 'true';
+
+            changeGroupStage(treeData, this.dataset.group, '1', previous_first.value, this.value)
         }
         // second selected
         else if (this.dataset.second !== undefined) {
             // find the previously selected second
             var previous_second = d3.select("input[name='group_" + this.dataset.group + "_second'][data-second='true']").node();
-            console.log("previous_second: " + previous_second.value);
+            //console.log("previous_second: " + previous_second.value);
 
             // Check if it's the same as first, then switch
             if (this.value === d3.select("input[name='group_" + this.dataset.group + "_first'][data-first='true']").property('value')) {
-                console.log('Same as first');
+                //console.log('Same as first');
 
                 // old first
                 var previous_first = d3.select("input[name='group_" + this.dataset.group + "_first'][data-first='true']").node();
@@ -424,12 +432,16 @@ function groupStagePredictions() {
                 var new_first = d3.select("input[name='group_" + this.dataset.group + "_first'][value='" + previous_second.value + "']").node();
                 new_first.checked = true;
                 new_first.dataset.first = 'true';
+
+                changeGroupStage(treeData, this.dataset.group, '1', previous_first.value, new_first.value)
             }
 
             // switch previous first to false
             previous_second.dataset.second = 'false';
 
             this.dataset.second = 'true';
+
+            changeGroupStage(treeData, this.dataset.group, '2', previous_second.value, this.value)
         };
     });
 };
@@ -448,73 +460,108 @@ var treeData =
     "children": [
       {
         "name": "Semi-final 1",
+        "stage": "semi-finals",
         "home_team": 'Argentina',
         "away_team": 'Germany',
         "winner": 'Germany',
         "children": [
           {
             "name": "Quarter-final - 1",
+            "stage": "quarter-finals",
             "home_team": 'Netherlands',
             "away_team": 'Argentina',
             "winner": 'Argentina',
             "children": [
-                {
-                    "name": "Round of 16 - A1 vs B2",
-                    "home_team": 'Netherlands',
-                    "away_team": 'Senegal',
-                    "winner": 'Netherlands'
-                  },
-                  {
-                    "name": "Round of 16 - C1 vs D2",
-                    "home_team": 'Argentina',
-                    "away_team": 'Denmark',
-                    "winner": 'Argentina'
-                  }
+              {
+                "name": "Round of 16 - A1 vs B2",
+                "stage": "round of 16",
+                "home_group": 'a',
+                "home_group_position": '1',
+                "home_team": 'Netherlands',
+                "away_group": 'b',
+                "away_group_position": '2',
+                "away_team": 'United States',
+                "winner": 'Netherlands'
+              },
+              {
+                "name": "Round of 16 - C1 vs D2",
+                "stage": "round of 16",
+                "home_group": 'c',
+                "home_group_position": '1',
+                "home_team": 'Argentina',
+                "away_group": 'd',
+                "away_group_position": '2',
+                "away_team": 'Denmark',
+                "winner": 'Argentina'
+              }
             ]
           },
           {
             "name": "Quarter-final - 2",
+            "stage": "quarter-finals",
             "home_team": 'Germany',
             "away_team": 'Brazil',
             "winner": 'Germany',
             "children": [
-                {
-                    "name": "Round of 16 - E1 vs F2",
-                    "home_team": 'Germany',
-                    "away_team": 'Croatia',
-                    "winner": 'Germany'
-                  },
-                  {
-                    "name": "Round of 16 - G1 vs H2",
-                    "home_team": 'Brazil',
-                    "away_team": 'Portugal',
-                    "winner": 'Brazil'
-                  }
+              {
+                "name": "Round of 16 - E1 vs F2",
+                "stage": "round of 16",
+                "home_group": 'e',
+                "home_group_position": '1',
+                "home_team": 'Germany',
+                "away_group": 'f',
+                "away_group_position": '2',
+                "away_team": 'Croatia',
+                "winner": 'Germany'
+              },
+              {
+                "name": "Round of 16 - G1 vs H2",
+                "stage": "round of 16",
+                "home_group": 'g',
+                "home_group_position": '1',
+                "home_team": 'Brazil',
+                "away_group": 'h',
+                "away_group_position": '2',
+                "away_team": 'Portugal',
+                "winner": 'Brazil'
+              }
             ]
           }
         ]
       },
       {
         "name": "Semi-final 2",
+        "stage": "semi-finals",
         "home_team": 'France',
         "away_team": 'Uruguay',
         "winner": 'France',
         "children": [
           {
             "name": "Quarter-final - 3",
+            "stage": "quarter-finals",
             "home_team": 'England',
             "away_team": 'France',
             "winner": 'France',
             "children": [
               {
                 "name": "Round of 16 - B1 vs A2",
+                "stage": "round of 16",
+                "home_group": 'b',
+                "home_group_position": '1',
                 "home_team": 'England',
+                "away_group": 'a',
+                "away_group_position": '2',
                 "away_team": 'Senegal',
                 "winner": 'England'
               },
               {
                 "name": "Round of 16 - D1 vs C2",
+                "stage": "round of 16",
+                "home_group": 'd',
+                "home_group_position": '1',
                 "home_team": 'France',
+                "away_group": 'c',
+                "away_group_position": '2',
                 "away_team": 'Mexico',
                 "winner": 'France'
               }
@@ -522,19 +569,29 @@ var treeData =
           },
           {
             "name": "Quarter-final - 4",
+            "stage": "quarter-finals",
             "home_team": 'Spain',
             "away_team": 'Uruguay',
             "winner": 'Uruguay',
             "children": [
               {
                 "name": "Round of 16 - F1 vs E2",
+                "stage": "round of 16",
+                "home_group": 'f',
+                "home_group_position": '1',
                 "home_team": 'Belgium',
+                "away_group": 'e',
                 "away_team": 'Spain',
                 "winner": 'Spain'
               },
               {
                 "name": "Round of 16 - H1 vs G2",
+                "stage": "round of 16",
+                "home_group": 'h',
+                "home_group_position": '1',
                 "home_team": 'Uruguay',
+                "away_group": 'g',
+                "away_group_position": '2',
                 "away_team": 'Switzerland',
                 "winner": 'Uruguay'
               }
@@ -545,88 +602,287 @@ var treeData =
     ]
   };
 
-// set the dimensions and margins of the diagram
-var tm_margin = {top: 20, right: 100, bottom: 30, left: 90},
-    tm_width = 800 - tm_margin.left - tm_margin.right,
-    tm_height = 800 - tm_margin.top - tm_margin.bottom;
 
-// declares a tree layout and assigns the size
-var treemap = d3.tree()
-    .size([tm_height, tm_width]);
+function drawKnockOutStage() {
+    // set the dimensions and margins of the diagram
+    var tm_margin = {top: 20, right: 100, bottom: 30, left: 90},
+        tm_width = 800 - tm_margin.left - tm_margin.right,
+        tm_height = 800 - tm_margin.top - tm_margin.bottom;
 
-//  assigns the data to a hierarchy using parent-child relationships
-var nodes = d3.hierarchy(treeData, function(d) {
-    return d.children;
-  });
+    // declares a tree layout and assigns the size
+    var treemap = d3.tree()
+        .size([tm_height, tm_width]);
 
-// maps the node data to the tree layout
-nodes = treemap(nodes);
+    //  assigns the data to a hierarchy using parent-child relationships
+    var nodes = d3.hierarchy(treeData, function(d) {
+        return d.children;
+      });
 
-// append the svg object to the #knockout_stages_treemap div
-// appends a 'group' element to 'svg'
-// moves the 'group' element to the top left margin
-var tm_svg = d3.select("#knockout_stages_treemap").append("svg")
-      .attr("width", tm_width + tm_margin.left + tm_margin.right)
-      .attr("height", tm_height + tm_margin.top + tm_margin.bottom),
-    tm_g = tm_svg.append("g")
-      .attr("transform",
-            "translate(" + tm_margin.left + "," + tm_margin.top + ")");
+    // maps the node data to the tree layout
+    nodes = treemap(nodes);
 
-// line connector between nodes
-  var line = d3.line()
-    .x(d => tm_width - d.y)
-    .y(d => d.x)
-  	.curve(d3.curveStep);
+    // append the svg object to the #knockout_stages_treemap div
+    // appends a 'group' element to 'svg'
+    // moves the 'group' element to the top left margin
+    var tm_svg = d3.select("#knockout_stages_treemap").append("svg")
+          .attr("width", tm_width + tm_margin.left + tm_margin.right)
+          .attr("height", tm_height + tm_margin.top + tm_margin.bottom),
+        tm_g = tm_svg.append("g")
+          .attr("transform",
+                "translate(" + tm_margin.left + "," + tm_margin.top + ")");
 
-// adds the links between the nodes
-var link = tm_g.selectAll(".link")
-    .data( nodes.descendants().slice(1))
-  .enter().append("path")
-    .attr("class", "link")
-    .attr("d", d => line([d, d.parent ]));
+    // line connector between nodes
+      var line = d3.line()
+        .x(d => tm_width - d.y)
+        .y(d => d.x)
+        .curve(d3.curveStep);
 
-// adds each node as a group
-var node = tm_g.selectAll(".node")
-    .data(nodes.descendants())
-  .enter().append("g")
-    .attr("class", function(d) {
-      return "node" +
-        (d.children ? " node--internal" : " node--leaf"); })
-    .attr("transform", function(d) {
-      return "translate(" + (tm_width - d.y) + "," + d.x + ")"; });
+    // adds the links between the nodes
+    var link = tm_g.selectAll(".link")
+        .data( nodes.descendants().slice(1))
+      .enter().append("path")
+        .attr("class", "link")
+        .attr("d", d => line([d, d.parent ]));
 
-// adds the circle to the node
-node.append("rect")
-  .attr("width", 125)
-  .attr("height", 17)
-  .attr("x", function(d) { return -50; })
-  .attr("y", function(d) { return -15; });
+    // adds each node as a group
+    var node = tm_g.selectAll(".node")
+        .data(nodes.descendants())
+      .enter().append("g")
+        .attr("class", function(d) {
+          return "node" +
+            (d.children ? " node--internal" : " node--leaf"); })
+        .attr("transform", function(d) {
+          return "translate(" + (tm_width - d.y) + "," + d.x + ")"; });
 
-// adds the circle to the node
-node.append("rect")
-  .attr("width", 125)
-  .attr("height", 17)
-  .attr("x", function(d) { return -50; })
-  .attr("y", function(d) { return 2; });
+    // adds the circle to the node
+    node.append("rect")
+      .attr("width", 125)
+      .attr("height", 17)
+      .attr("x", function(d) { return -50; })
+      .attr("y", function(d) { return -15; });
 
-// adds the text to the node
-node.append("text")
-  .attr("x", function(d) { return -50; })
-  .attr("y", function(d) { return -20; })
-  .text(function(d) { return d.data.name; });
+    // adds the circle to the node
+    node.append("rect")
+      .attr("width", 125)
+      .attr("height", 17)
+      .attr("x", function(d) { return -50; })
+      .attr("y", function(d) { return 2; });
 
-// adds the text to the node
-node.append("text")
-  .attr("x", function(d) { return -47; })
-  .attr("y", function(d) { return -3; })
-  .text(function(d) { return d.data.home_team + (d.data.winner === d.data.home_team ? " (W)" : ""); });
+    // adds the text to the node
+    node.append("text")
+      .attr("x", function(d) { return -50; })
+      .attr("y", function(d) { return -20; })
+      .text(function(d) { return d.data.name; });
 
-// adds the text to the node
-node.append("text")
-  .attr("x", function(d) { return -47; })
-  .attr("y", function(d) { return 15; })
-  .text(function(d) { return d.data.away_team + (d.data.winner === d.data.away_team ? " (W)" : ""); });
+    // adds the text to the node
+    node.append("text")
+      .attr("x", function(d) { return -47; })
+      .attr("y", function(d) { return -3; })
+      .text(function(d) { return d.data.home_team + (d.data.winner === d.data.home_team ? " (W)" : ""); })
+      .attr("data-country", function(d) { return d.data.home_team; })
+      .attr("data-stage", function(d) { return d.data.stage; })
+      .on("click", function(d) {
+            //console.log("clicked home team: ");
+            //console.log(d.target);
+            changeWinner(treeData, d.target.parentNode.__data__.data, d.target.dataset['country'], d.target.dataset['stage']);
+       })
+      ;
 
+    // adds the text to the node
+    node.append("text")
+      .attr("x", function(d) { return -47; })
+      .attr("y", function(d) { return 15; })
+      .text(function(d) { return d.data.away_team + (d.data.winner === d.data.away_team ? " (W)" : ""); })
+      .attr("data-country", function(d) { return d.data.away_team; })
+      .attr("data-stage", function(d) { return d.data.stage; })
+      .on("click", function(d) {
+            //console.log("clicked away team: ");
+            //console.log(d.target.parentNode.__data__.data);
+            changeWinner(treeData, d.target.parentNode.__data__.data, d.target.dataset['country'], d.target.dataset['stage']);
+       })
+      ;
+}
+
+function resetKnockOutStage() {
+    return d3.select("#knockout_stages_treemap").html("");
+}
+
+function getCountryFromCountryName(countryName) {
+    var returnCountry = null;
+    wc_teams_data.forEach(function(country) {
+        if (country.country === countryName) {
+            //console.log(country);
+            returnCountry = country;
+        }
+    });
+    return returnCountry;
+}
+
+
+function determineWinnerAtXKnockoutStage(stage, treeNode) {
+    //console.log('determineWinnerAtXKnockoutStage - stage: ' + stage + "; treeNode:");
+    //console.log("before winner: " + treeNode.winner);
+    var homeTeamData = getCountryFromCountryName(treeNode.home_team);
+    var awayTeamData = getCountryFromCountryName(treeNode.away_team);
+
+    var homeTeamScoreToCompare = null;
+    var awayTeamScoreToCompare = null;
+
+    switch (stage) {
+        case 'round of 16':
+            homeTeamScoreToCompare = homeTeamData.quarterfinals;
+            awayTeamScoreToCompare = awayTeamData.quarterfinals;
+            break;
+        case 'quarter-finals':
+            homeTeamScoreToCompare = homeTeamData.semifinals;
+            awayTeamScoreToCompare = awayTeamData.semifinals;
+            break;
+        case 'semi-finals':
+            homeTeamScoreToCompare = homeTeamData.finals;
+            awayTeamScoreToCompare = awayTeamData.finals;
+            break;
+        case 'final':
+            homeTeamScoreToCompare = homeTeamData.winner;
+            awayTeamScoreToCompare = awayTeamData.winner;
+            break;
+    }
+
+    if ((homeTeamScoreToCompare) >= Number(awayTeamScoreToCompare)) {
+        treeNode.winner = treeNode.home_team;
+    }
+    else {
+        treeNode.winner = treeNode.away_team;
+    }
+    //console.log("after winner: " + treeNode.winner);
+}
+
+function changeGroupStage(parent, group, group_position, from_country_code, to_country_code) {
+
+    //console.log("changeGroupStageFirst - called with params: " + group, group_position, from_country_code, to_country_code);
+
+    from_country_name = wc_teams_data.get(from_country_code).country;
+
+    to_country_data = wc_teams_data.get(to_country_code);
+    to_country_name = to_country_data.country;
+
+    parent.children.forEach(function(child) {
+        if (child.children) {
+            changeGroupStage(child, group, group_position, from_country_code, to_country_code);
+
+            // the teams have to be in the previous knockout stage, except for the group stages
+            //console.log("child.children:");
+            //console.log(child.children);
+            if (!(child.children[0].home_team === to_country_name ||
+                    child.children[1].home_team === to_country_name ||
+                    child.children[0].away_team === to_country_name ||
+                    child.children[1].away_team === to_country_name)) {
+                //console.log("parent does not have the to country");
+                return;
+            }
+
+            // on knockout stages if the team did not win in the previous stage then don't change
+            if (!(child.children[0].winner === to_country_name || child.children[1].winner === to_country_name)) {
+
+                // Change the teams
+                if (child.children[0].home_team === to_country_name || child.children[0].away_team === to_country_name) {
+                    child.home_team = child.children[0].winner;
+                }
+                else {
+                    child.away_team = child.children[1].winner;
+                }
+
+                determineWinnerAtXKnockoutStage(child.stage, child);
+
+                return;
+            }
+        };
+
+        // At any knockout stage the from_team should be in only one of the matches
+        if (child.home_team === from_country_name || child.away_team === from_country_name) {
+            //console.log("switch! stage: " + child.stage + " from_country_name: " + from_country_name + "; to_country_name: " + to_country_name);
+
+            // Change the teams
+            if (child.home_team === from_country_name) {
+                //console.log('home team matches from country name');
+                // check for the round of 16 and group position to match
+                if (child.stage === 'round of 16' && !(child.home_group === group && child.home_group_position === group_position)) {
+                    //console.log('home team does not match group position');
+                    return;
+                }
+                child.home_team = to_country_name;
+            }
+            else if (child.away_team === from_country_name) {
+                //console.log('away team matches from country name');
+
+                // check for the round of 16 and group position to match
+                if (child.stage === 'round of 16' && !(child.away_group === group && child.away_group_position === group_position)) {
+                    //console.log('no group for away team');
+                    return;
+                }
+                child.away_team = to_country_name;
+            };
+
+            // Determine winner at round of 16 stage
+            determineWinnerAtXKnockoutStage(child.stage, child);
+        };
+    });
+
+    // Make sure winners are correct in each stage
+    parent.home_team = parent.children[0].winner;
+    parent.away_team = parent.children[1].winner;
+    determineWinnerAtXKnockoutStage(parent.stage, parent);
+
+    resetKnockOutStage();
+
+    drawKnockOutStage();
+}
+
+var stageLevels = {
+    'round of 16': 1,
+    'quarter-finals': 2,
+    'semi-finals': 3,
+    'final': 4,
+}
+
+function changeWinner(parent, changedNode, toWinner, fromStage) {
+    //console.log("changeWinner: toWinner: " + toWinner + "; fromStage: " + fromStage + "; changedNode: ");
+    //console.log(changedNode);
+
+    if (changedNode.winner === toWinner || stageLevels[changedNode.stage] < stageLevels[fromStage]) {
+        //console.log("Winner is the same, nothing to do...");
+        return;
+    }
+
+    if (stageLevels[parent.stage] < stageLevels[fromStage]) {
+        //console.log("Stage is prior...");
+        return;
+    }
+
+    // Find the stage where to change the to winner
+    if (parent.children) {
+        parent.children.forEach(function(child) {
+            changeWinner(child, changedNode, toWinner, fromStage);
+        });
+
+        // Make sure winners are correct in each stage
+        parent.home_team = parent.children[0].winner;
+        parent.away_team = parent.children[1].winner;
+        determineWinnerAtXKnockoutStage(parent.stage, parent);
+    }
+
+    //console.log("stageLevels[parent.stage]: " + stageLevels[parent.stage]);
+    //console.log("stageLevels[fromStage]: " + stageLevels[fromStage]);
+    if ((parent.home_team === toWinner || parent.away_team === toWinner) &&
+            stageLevels[parent.stage] === stageLevels[fromStage]) {
+        //console.log("getCountryFromCountryName(toWinner): ");
+        //console.log(getCountryFromCountryName(toWinner));
+        parent.winner = getCountryFromCountryName(toWinner).country;
+    }
+
+    resetKnockOutStage();
+
+    drawKnockOutStage();
+}
 
 
 </script>
